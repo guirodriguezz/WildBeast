@@ -23,14 +23,14 @@ body {
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
-/* Grid Layout */
+/* Grid Layout - Estrutura */
 .estrutura {
-    display: grid;
-    grid-template-columns: minmax(160px, 1fr) 3fr 300px;
-    grid-template-areas: 
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) 3fr 300px;
+  grid-template-areas:
     "header  header  header"
     "sidenav conteudo anuncios"
     "footer  footer  footer";
@@ -38,61 +38,78 @@ img {
 
 /* Header */
 .header {
-    grid-area: header;
-    background: linear-gradient(135deg, #8844ee, #b07dfb);
-    padding: 30px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
+  grid-area: header;
+  background: linear-gradient(135deg, #8844ee, #b07dfb);
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
 }
 
 .logo {
-    max-width: 200px;
+  max-width: 200px;
 }
 
-.header nav ul {
-    display: flex;
-    flex-wrap: wrap;
+.menu ul {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.header nav a {
-    display: block;
-    padding: 10px;
-    color: #fff;
-    font-size: 1.125em;
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    transition: 0.1s;
+.menu a {
+  display: block;
+  padding: 10px;
+  color: #fff;
+  font-size: 1.125em;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  transition: 0.1s;
 }
 
 .header li + li {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
-.header nav a:hover {
-    background: rgba(0, 0, 0, 0.5);
+.menu a:hover {
+  background: rgba(0, 0, 0, 0.5);
 }
 
-
-
-
-
-
-
-
+/* Sidenav */
 .sidenav {
-    grid-area: sidenav;
+  grid-area: sidenav;
+  background: #fafbfc;
+  padding: 30px;
 }
 
+.sidenav-item a {
+  display: block; /*Importante entender conceito*/
+  min-width: 60px;
+  max-width: 100px;
+  margin: 0 auto 30px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px 0px;
+  transition: 0.1 ease-out;
+}
+
+.sidenav-item a:hover {
+  box-shadow: 2px 2px 5px 0px;
+}
+
+/* Contéudo */
 .content {
-    grid-area: conteudo;
+  grid-area: conteudo;
 }
 
+/* Anúncios */
 .anuncios {
-    grid-area: anuncios;
+  grid-area: anuncios;
+  background: #fafbfc;
+  display: grid;
+  align-content: flex-start;
 }
 
+/* Footer */
 .footer {
-    grid-area: footer;
+  grid-area: footer;
 }
- 
