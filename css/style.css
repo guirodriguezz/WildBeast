@@ -24,6 +24,8 @@ body {
 
 img {
   max-width: 100%;
+  display: block;
+  border-radius: 5px;
 }
 
 /* Grid Layout - Estrutura */
@@ -34,6 +36,28 @@ img {
     "header  header  header"
     "sidenav conteudo anuncios"
     "footer  footer  footer";
+}
+
+@media (max-width: 1200px) {
+  .estrutura {
+    grid-template-areas:
+      "header   header    header"
+      "sidenav  conteudo  conteudo"
+      "sidenav  anuncios  anuncios"
+      "footer   footer    footer";
+  }
+}
+
+@media (max-width: 760px) {
+  .estrutura {
+    grid-template-columns: minmax(160px, 1fr);
+    grid-template-areas:
+      "header"
+      "sidenav"
+      "conteudo"
+      "anuncios"
+      "footer";
+  }
 }
 
 /* Header */
@@ -73,6 +97,21 @@ img {
   background: rgba(0, 0, 0, 0.5);
 }
 
+@media (max-width: 760px) {
+  .header {
+    grid-template-columns: auto;
+  }
+  .logo {
+    margin-bottom: 20px;
+  }
+  .header li + li {
+    margin-left: 5px;
+  }
+  .menu a {
+    font-size: 1em;
+  }
+}
+
 /* Sidenav */
 .sidenav {
   grid-area: sidenav;
@@ -96,9 +135,180 @@ img {
   box-shadow: 2px 2px 5px 0px;
 }
 
+@keyframes seta {
+  /*Pesquisar mais a respeito*/
+  from {
+    right: 30px;
+  }
+  to {
+    right: 20px;
+  }
+}
+
+@media (max-width: 760px) {
+  .sidenav ul {
+    display: flex;
+  }
+  .sidenav-item {
+    flex: 1 0 60px;
+  }
+  .sidenav {
+    position: relative;
+    padding: 0 30px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+  .sidenav-item a {
+    margin: 30px 30px 30px 0;
+  }
+  .sidenav::after {
+    content: "→";
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    color: rgba(0, 0, 0, 0.3);
+    animation: seta 0.5s ease-in 0s infinite alternate;
+  }
+}
+
 /* Contéudo */
 .content {
   grid-area: conteudo;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+}
+
+@media (max-width: 600px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+  img {
+    width: 100%;
+  }
+  .titulo,
+  .caracteristicas {
+    margin: 0px auto;
+  }
+}
+
+.col-wide {
+  grid-column: 1 / -1;
+}
+
+.imagem-1 {
+  grid-row: span 2; /* Melhor maneiraimagem-1 */
+  align-self: flex-end;
+}
+
+.imagem-2 {
+  align-self: end;
+}
+
+.content p {
+  font-size: 1.2em;
+  line-height: 1.6;
+  letter-spacing: -0.005em;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+#destaque {
+  color: #b07dfb;
+}
+
+.informacoes p + p {
+  /*Elemento que vem após o outro*/
+  margin-top: 30px;
+}
+
+.titulo {
+  color: #b07dfb;
+}
+
+.titulo h1 {
+  font-size: 3.75em;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.titulo span {
+  font-size: 0.875em;
+  font-style: italic;
+}
+
+.caracteristicas {
+  display: flex;
+  align-items: flex-start;
+}
+
+.caracteristicas > div {
+  /*Falando especificamente com a div dentro do elemento*/
+  width: 80px;
+  text-align: center;
+  background: linear-gradient(135deg, #8844ee, #b07dfb);
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px 0px;
+}
+
+.caracteristicas > div:first-child {
+  margin-right: 30px;
+}
+
+.caracteristicas span {
+  display: block;
+}
+
+.numero {
+  color: #fff;
+  font-size: 3em;
+  line-height: 1;
+  margin: 10px auto;
+}
+
+.rotulo {
+  background: #fff;
+  border-radius: 0 0 5px 5px;
+  color: #b07dfb;
+  padding: 5px 0;
+}
+
+.destaque {
+  font-size: 0.875em;
+  color: #b07dfb;
+  max-width: 16em;
+}
+
+.citacao,
+.atributos {
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px 0px;
+  background: linear-gradient(135deg, #8844ee, #b07dfb);
+  align-self: flex-start;
+}
+
+.citacao p {
+  font-size: 1.5em;
+  font-style: italic;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  color: #fff;
+}
+
+.atributos li {
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.125em;
+  padding: 15px;
+}
+
+.atributos li + li {
+  border-top: 2px solid #b07dfb;
 }
 
 /* Anúncios */
@@ -107,9 +317,16 @@ img {
   background: #fafbfc;
   display: grid;
   align-content: flex-start;
+  padding: 30px;
+  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 /* Footer */
 .footer {
   grid-area: footer;
+  background: linear-gradient(135deg, #8844ee, #b07dfb);
+  text-align: center;
+  padding: 30px;
+  color: #fff;
 }
